@@ -14,28 +14,17 @@ def main(opcao, value, dados):
     metodo = int(input('\nMétodos de pagamento:\n1 - DEBITO\n2 - CREDITO\n\nDigite a opção: '))
 
     if metodo == 1: #debito
-      dados['command'] = 'PAYMENT'
-      dados['value'] = value
-      dados['paymentMethod'] = 'CARD'
-      dados['paymentType'] = 'DEBIT'
+      dados = {'command': 'PAYMENT','value': value,'paymentMethod': 'CARD','paymentType': 'DEBIT'}
       pagamento(dados)
 
     elif metodo == 2: #credito
       forma = int(input('1 - A VISTA\n2 - PARCELADO\n\nDigite a opção: '))
 
       if forma == 1: # Credito a vista
-        dados['command'] = 'PAYMENT'
-        dados['value'] = value
-        dados['paymentMethod'] = 'CARD'
-        dados['paymentType'] = 'CREDIT'
-        dados['paymentMethodSubType'] = 'FULL_PAYMENT'
+        dados = {'command': 'PAYMENT','value': value,'paymentMethod': 'CARD','paymentType': 'CREDIT','paymentMethodSubType': 'FULL_PAYMENT'}
         pagamento(dados)
       elif forma == 2: # Credito parcelado lojista
-        dados['command'] = 'PAYMENT'
-        dados['value'] = value
-        dados['paymentMethod'] = 'CARD'
-        dados['paymentType'] = 'CREDIT'
-        dados['paymentMethodSubType'] = 'FINANCED_NO_FEES'
+        dados = {'command': 'PAYMENT','value': value,'paymentMethod': 'CARD','paymentType': 'CREDIT','paymentMethodSubType': 'FINANCED_NO_FEES'}
         pagamento(dados)
       else:
         print('Opção inválida')
@@ -46,16 +35,11 @@ def main(opcao, value, dados):
       return
 
   elif opcao == 2: #dinheiro
-    dados['command'] = 'PAYMENT'
-    dados['value'] = value
-    dados['paymentMethod'] = 'CASH'
-    dados['paymentType'] = 'CASH'
+    dados = {'command': 'PAYMENT','value': value,'paymentMethod': 'CASH','paymentType': 'CASH'}
     pagamento(dados)
 
   elif opcao == 3: #pix
-    dados['command'] = 'PAYMENT'
-    dados['value'] = value
-    dados['paymentMethod'] = 'PIX'
+    dados = {'command': 'PAYMENT','value': value,'paymentMethod': 'PIX'}
     pagamento(dados)
 
 
