@@ -1,9 +1,9 @@
 #estudo de integração com checkout de pagamentos, via API local.
 
-from functions import pagamento, consulta
+from functions import pagamento, retorno
 
 #essas duas linhas vao capturar o valor e pedir para escolher a forma de pagamento
-value = int(input('Digite o valor do produto: '))
+value = float(input('Digite o valor do produto: '))
 opcao = int(input('\nFormas de pagamento:\n1 - CARTÃO\n2 - DINHEIRO\n3 - PIX\n\nDigite a opção:'))
 
 dados = {} #aqui eu vou salvar os campos e os valores que serão enviados em json para o checkout
@@ -44,4 +44,7 @@ def main(opcao, value, dados):
 
 
 main(opcao, value, dados)
-consulta()
+
+while True:
+  if retorno():
+    break

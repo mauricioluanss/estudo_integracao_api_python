@@ -1,22 +1,23 @@
 #CRIEI ESSE ARQUIVO PARA COLOCAR AS FUNCOES DE REQUISICAO PARA O CHECKOUT
 from config import *
 import requests
+import time
 
 #funcao para chamar o pagamento no checkout
 def pagamento(dados):
   resposta = requests.post(f'{CHAMADA_PAGAMENTO}', json=dados)
 
-  if resposta.status_code == 200:
-    print('\n', resposta.status_code, " - ", resposta.reason,'\n')
-  else:
-    print('\n', resposta.status_code," - ", resposta.reason,'\n')
-    
+  if resposta.status_code != 200:
+    print('\n', 'retorno do post: ',resposta.status_code, " - ", resposta.reason,'\n')
 
-#funcao para consultar transacao enviada para o checkout
-def consulta():
+
+def retorno():
   resposta = requests.get(f'{CHAMADA_CONSULTA}')
   
-  if resposta.status_code == 200 or resposta.status_code == 202:
-    print('retorno da transacao: ', resposta.json())
+  if resposta.status_code == 200:
+    print(resposta.json())
+    return True
   else:
-    print(resposta.status_code,' - ', resposta.reason)
+    print(resposta.json())
+    time.sleep(3)
+    return False
